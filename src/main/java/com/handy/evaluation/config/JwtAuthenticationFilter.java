@@ -39,7 +39,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         jwt = authHeader.substring(7);
-        // todo extract the user from the jwt token
         userEmail = jwtService.extractUserName(jwt);
 
         // we verify if the userEmail exists AND check if he is already authenticated

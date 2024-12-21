@@ -20,16 +20,18 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
                 .cors(Customizer.withDefaults())
-                .csrf(AbstractHttpConfigurer::disable)  // To search (Spring Security)
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
                         req.requestMatchers(
-                                        "/api/v1/auth/**"
-
+                                        "/api/v1/auth/**",
+                                        "/product/**",
+                                        "/subscription/**"
 
                                 ).permitAll()
                                 .anyRequest()
